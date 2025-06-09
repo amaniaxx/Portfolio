@@ -1,0 +1,32 @@
+/* Prevent text selection and hide cursor globally */
+* {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  cursor: default !important;
+}
+
+/* Preserve cursor styles for interactive elements */
+button, 
+a, 
+[role="button"],
+input[type="range"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+select,
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  cursor: text !important;
+} 

@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Bonjour, je suis Aman Awasthi",
+    "subtitle": "Développeur Full Stack",
+    "description": "Je construis des applications web modernes avec des technologies de pointe"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "filter": {
+      "all": "Tous",
+      "web": "Web",
+      "mobile": "Mobile",
+      "desktop": "Bureau",
+      "api": "API",
+      "other": "Autres"
+    },
+    "showing": {
+      "all": "Affichage de tous les {{count}} projets",
+      "category": "Affichage de {{count}} projets {{category}}"
+    }
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "send": "Envoyer le Message",
+    "success": "Message envoyé avec succès !",
+    "error": "Erreur lors de l'envoi du message. Veuillez réessayer."
+  }
+} 

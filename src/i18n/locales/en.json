@@ -1,0 +1,37 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Hi, I'm Aman Awasthi",
+    "subtitle": "Full Stack Developer",
+    "description": "I build modern web applications with cutting-edge technologies"
+  },
+  "projects": {
+    "title": "My Projects",
+    "filter": {
+      "all": "All",
+      "web": "Web",
+      "mobile": "Mobile",
+      "desktop": "Desktop",
+      "api": "API",
+      "other": "Other"
+    },
+    "showing": {
+      "all": "Showing all {{count}} projects",
+      "category": "Showing {{count}} {{category}} projects"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully!",
+    "error": "Error sending message. Please try again."
+  }
+} 
