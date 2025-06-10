@@ -97,19 +97,68 @@ const Projects = () => {
             {projects.map((project, index) => (
               <Card 
                 key={project.title}
-                className={`group relative overflow-hidden glass-effect hover:bg-card/90 border-border/40 hover:border-white/80 transition-all duration-500 ease-out professional-shadow hover:shadow-xl hover:shadow-primary/20 transform project-card-premium ${
+                className={`group relative overflow-hidden glass-effect transform ${
                   isVisible ? 'animate-smooth-fade-in opacity-100' : 'opacity-0 scale-95'
                 }`}
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                  willChange: 'transform, box-shadow'
+                  willChange: 'transform',
+                  transformStyle: 'preserve-3d',
+                  perspective: '1000px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'transform 300ms ease-out, border 150ms ease-out'
+                }}
+                onMouseMove={(e) => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  
+                  const centerX = rect.width / 2;
+                  const centerY = rect.height / 2;
+                  
+                  // Calculate rotation based on mouse position
+                  const rotateX = (y - centerY) / 15; // Reduced from 20 to 15 for subtler effect
+                  const rotateY = (centerX - x) / 15; // Reduced from 20 to 15 for subtler effect
+                  
+                  // Add a slight scale effect
+                  const scale = 1.01;
+                  
+                  // Apply the transform with a smooth transition
+                  card.style.transform = `
+                    perspective(1000px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    scale3d(${scale}, ${scale}, ${scale})
+                  `;
+                  
+                  // Add a subtle border highlight
+                  card.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                  
+                  // Add a subtle shadow based on mouse position
+                  const shadowX = (x - centerX) / 20;
+                  const shadowY = (y - centerY) / 20;
+                  card.style.boxShadow = `
+                    ${shadowX}px ${shadowY}px 20px rgba(0, 0, 0, 0.2),
+                    0 0 0 1px rgba(255, 255, 255, 0.1)
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  const card = e.currentTarget;
+                  // Smoothly reset all transforms
+                  card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                  card.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                  card.style.boxShadow = 'none';
                 }}
               >
-                {/* Optimized gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {/* Dark gradient overlay with blue tint */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-blue-800/30 to-blue-950/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
                 
-                <CardHeader className="pb-3 sm:pb-4 relative z-10">
+                {/* Glass effect overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+                
+                <CardHeader className="pb-3 sm:pb-4 relative z-20">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-3 mb-2 sm:mb-3">
                     <CardTitle className="text-xl sm:text-2xl font-bold group-hover:text-gradient-primary transition-all duration-300">
                       {project.title}

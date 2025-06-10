@@ -2,27 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aman Awasthi - Portfolio | Full Stack Developer</title>
     
     <!-- Resource Hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://unpkg.com" crossorigin />
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    <link rel="preload" href="/src/components/Hero.tsx" as="script" />
-    <link rel="preload" href="/src/components/About.tsx" as="script" />
-    
-    <!-- Prefetch likely next pages -->
-    <link rel="prefetch" href="/projects" />
-    <link rel="prefetch" href="/contact" />
-    
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="font" crossorigin />
     
     <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -35,14 +23,14 @@
     <meta name="author" content="Aman Awasthi" />
     <meta name="keywords" content="Aman Awasthi, Full Stack Developer, Web Development, Portfolio, React, TypeScript, Node.js" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://amanawasthi.dev" />
+    <link rel="canonical" href="https://amaniaxportfolio.netlify.app/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Aman Awasthi - Portfolio | Full Stack Developer" />
     <meta property="og:description" content="Explore Aman Awasthi's professional portfolio showcasing full-stack development projects, skills, and experience." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://amanawasthi.dev" />
-    <meta property="og:image" content="https://amanawasthi.dev/opengraph-image.png" />
+    <meta property="og:url" content="https://amaniaxportfolio.netlify.app/" />
+    <meta property="og:image" content="https://amaniaxportfolio.netlify.app//opengraph-image.png" />
     <meta property="og:site_name" content="Aman Awasthi Portfolio" />
 
     <!-- Twitter -->
@@ -50,7 +38,7 @@
     <meta name="twitter:site" content="@amanawasthi" />
     <meta name="twitter:title" content="Aman Awasthi - Portfolio | Full Stack Developer" />
     <meta name="twitter:description" content="Explore Aman Awasthi's professional portfolio showcasing full-stack development projects, skills, and experience." />
-    <meta name="twitter:image" content="https://amanawasthi.dev/opengraph-image.png" />
+    <meta name="twitter:image" content="https://amaniaxportfolio.netlify.app//opengraph-image.png" />
 
     <!-- Additional SEO Meta Tags -->
     <meta name="theme-color" content="#000000" />
@@ -86,6 +74,24 @@
         "Full Stack Development"
       ]
     }
+    </script>
+
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="/weightless.png" as="image" type="image/png" />
+    
+    <!-- Mobile Web App Capable -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-title" content="Aman Iax Portfolio" />
+    
+    <!-- Fallback for older browsers -->
+    <script>
+      if (!('IntersectionObserver' in window)) {
+        import('intersection-observer');
+      }
     </script>
   </head>
   <body>

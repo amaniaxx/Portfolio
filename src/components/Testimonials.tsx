@@ -176,8 +176,8 @@ const Testimonials = () => {
             box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
           }
           50% {
-            transform: scale(1.02);
-            box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+            transform: scale(1.01);
+            box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
           }
           100% {
             transform: scale(1);
@@ -190,15 +190,15 @@ const Testimonials = () => {
         }
 
         .testimonial-card:hover {
-          transform: translateY(-8px) scale(1.02);
+          transform: translateY(-4px) scale(1.01);
           box-shadow: 
-            0 20px 40px rgba(0, 0, 0, 0.4),
-            0 10px 20px rgba(0, 0, 0, 0.3),
-            0 0 0 1px rgba(59, 130, 246, 0.2);
+            0 10px 20px rgba(0, 0, 0, 0.2),
+            0 5px 10px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(59, 130, 246, 0.1);
         }
 
         .testimonial-card:active {
-          transform: translateY(-4px) scale(0.98);
+          transform: translateY(-2px) scale(0.99);
         }
       `}</style>
     </section>

@@ -82,14 +82,60 @@ const Skills = () => {
             {skills.map((skill, index) => (
               <Card 
                 key={skill.name} 
-                className={`glass-effect hover:bg-card/60 transition-all duration-500 ease-out subtle-glow professional-shadow card-3d hover-lift transform ${
+                className={`glass-effect transition-all duration-500 ease-out transform ${
                   isVisible ? 'animate-smooth-fade-in opacity-100' : 'opacity-0 scale-95'
                 }`}
                 style={{ 
                   animationDelay: `${index * 75}ms`,
                   transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                  willChange: 'transform, box-shadow'
-                } as React.CSSProperties}
+                  willChange: 'transform',
+                  transformStyle: 'preserve-3d',
+                  perspective: '1000px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  transition: 'transform 300ms ease-out, border 150ms ease-out, box-shadow 300ms ease-out'
+                }}
+                onMouseMove={(e) => {
+                  const card = e.currentTarget;
+                  const rect = card.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  
+                  const centerX = rect.width / 2;
+                  const centerY = rect.height / 2;
+                  
+                  // Calculate rotation based on mouse position
+                  const rotateX = (y - centerY) / 20; // More subtle rotation for skills
+                  const rotateY = (centerX - x) / 20;
+                  
+                  // Add a slight scale effect
+                  const scale = 1.02;
+                  
+                  // Apply the transform with a smooth transition
+                  card.style.transform = `
+                    perspective(1000px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    scale3d(${scale}, ${scale}, ${scale})
+                  `;
+                  
+                  // Add a subtle border highlight
+                  card.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                  
+                  // Add a dynamic shadow based on mouse position
+                  const shadowX = (x - centerX) / 15;
+                  const shadowY = (y - centerY) / 15;
+                  card.style.boxShadow = `
+                    ${shadowX}px ${shadowY}px 15px rgba(0, 0, 0, 0.15),
+                    0 0 0 1px rgba(255, 255, 255, 0.1)
+                  `;
+                }}
+                onMouseLeave={(e) => {
+                  const card = e.currentTarget;
+                  // Smoothly reset all transforms
+                  card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                  card.style.border = '1px solid rgba(255, 255, 255, 0.1)';
+                  card.style.boxShadow = 'none';
+                }}
               >
                 <CardHeader className="pb-3 sm:pb-4">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-3">

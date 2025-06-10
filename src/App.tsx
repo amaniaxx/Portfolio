@@ -1,19 +1,28 @@
+// Core React imports
 import { Suspense, lazy } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
+
+// Third-party imports
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Local components
 import ErrorBoundary from './components/error-boundary';
 import SEO from './components/SEO';
 import BackToTop from './components/BackToTop';
-import { LanguageSwitcher } from './components/LanguageSwitcher';
-import './i18n';
 
-// Lazy load components
+// Lazy loaded components
 const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Create a client with optimized settings
+// Constants
+const SITE_TITLE = "Aman Iax Portfolio";
+const SITE_DESCRIPTION = "A professional portfolio showcasing my work, skills, and experience in web development and software engineering";
+const SITE_URL = "https://amaniaxportfolio.netlify.app";
+
+// Query client configuration
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -24,6 +33,20 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+// Structured data for SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": SITE_TITLE,
+  "url": SITE_URL,
+  "description": SITE_DESCRIPTION,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${SITE_URL}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -36,21 +59,40 @@ const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <Helmet>
+          <title>{SITE_TITLE}</title>
+          <meta name="description" content={SITE_DESCRIPTION} />
+          
+          {/* Open Graph tags */}
+          <meta property="og:title" content={SITE_TITLE} />
+          <meta property="og:description" content={SITE_DESCRIPTION} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={SITE_URL} />
+          
+          {/* Twitter Card tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={SITE_TITLE} />
+          <meta name="twitter:description" content={SITE_DESCRIPTION} />
+          
+          {/* Canonical URL */}
+          <link rel="canonical" href={SITE_URL} />
+          
+          {/* Structured data */}
+          <script type="application/ld+json">
+            {JSON.stringify(structuredData)}
+          </script>
+        </Helmet>
         <SEO />
         <Toaster />
         <BrowserRouter>
-          <div className="fixed top-4 right-4 z-50 flex gap-2">
-            <LanguageSwitcher />
-          </div>
           <Suspense fallback={<LoadingFallback />}>
             <Routes>
               <Route path="/" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
+          <BackToTop />
         </BrowserRouter>
-        <BackToTop />
       </TooltipProvider>
     </QueryClientProvider>
   </ErrorBoundary>

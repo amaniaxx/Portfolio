@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import ProfilePicture from '@/components/ProfilePicture';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -84,17 +85,7 @@ const About = () => {
               className={`flex justify-center lg:justify-end transition-all duration-1000 delay-500 ${isVisible ? 'animate-slide-in-right opacity-100' : 'opacity-0 translate-x-10'}`}
               aria-hidden="true"
             >
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition duration-500 animate-glow-pulse"></div>
-                <div className="relative w-80 h-80 glass-effect-strong rounded-2xl flex items-center justify-center professional-shadow hover-lift">
-                  <div className="w-72 h-72 bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center border border-primary/20 glass-enhanced">
-                    <div className="text-center animate-bounce-in">
-                      <div className="text-5xl font-bold text-gradient-primary mb-2">AA</div>
-                      <div className="text-sm text-muted-foreground font-medium">Web Developer</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ProfilePicture size="xl" className="mx-auto" />
             </div>
           </div>
         </div>
